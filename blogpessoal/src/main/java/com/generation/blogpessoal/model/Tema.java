@@ -2,6 +2,7 @@ package com.generation.blogpessoal.model;
 
 import java.util.List;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
@@ -13,25 +14,23 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-
 @Entity
 @Table(name = "tb_temas")
 public class Tema {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY )
-	private Long id;
 	
-	@NotNull(message = "O Atributo Descrição é obrigatorio")
-	private String descricao;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
+	@NotNull(message = "O Atributo Descrição é obrigatório")
+	private String descricao;
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tema", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("tema")
-	private List<Postagem> postagems;
-	
+	private List<Postagem> postagem;
 
 	public Long getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Long id) {
@@ -39,19 +38,19 @@ public class Tema {
 	}
 
 	public String getDescricao() {
-		return descricao;
+		return this.descricao;
 	}
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
 
-	public List<Postagem> getPostagems() {
-		return postagems;
+	public List<Postagem> getPostagem() {
+		return postagem;
 	}
 
-	public void setPostagems(List<Postagem> postagems) {
-		this.postagems = postagems;
+	public void setPostagem(List<Postagem> postagem) {
+		this.postagem = postagem;
 	}
-	
+
 }
